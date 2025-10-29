@@ -21,7 +21,17 @@
 /build
 
 # misc
+# macOS system files
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS metadata folders (auto-created when compressing/extracting zips)
+__MACOSX/
+
+# In case hidden macOS folders appear in subdirectories
+**/__MACOSX/
+**/.DS_Store
 *.pem
 
 # debug
