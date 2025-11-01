@@ -50,13 +50,7 @@ export function SiteHeader() {
     <FloatingNav
       navItems={navItems}
       logo={logo}
-      actions={
-        hasClerk ? (
-          <NavAuthActions />
-        ) : (
-          <FallbackActions />
-        )
-      }
+      actions={<NavAuthActions />}
     />
   );
 }
@@ -65,22 +59,13 @@ function NavAuthActions() {
   return (
     <>
       <SignedOut>
-        <div className="flex items-center gap-3">
-          <Link
-            href={registerPath}
-            className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-          >
-            Create account
-            <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-          </Link>
-          <Link
-            href={loginPath}
-            className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-          >
-            Login
-            <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-          </Link>
-        </div>
+        <Link
+          href={loginPath}
+          className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+        >
+          Sign in
+          <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        </Link>
       </SignedOut>
       <SignedIn>
         <UserButton
@@ -93,26 +78,5 @@ function NavAuthActions() {
         />
       </SignedIn>
     </>
-  );
-}
-
-function FallbackActions() {
-  return (
-    <div className="flex items-center gap-3">
-      <Link
-        href={registerPath}
-        className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-      >
-        Create account
-        <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-      </Link>
-      <Link
-        href={loginPath}
-        className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-      >
-        Login
-        <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-      </Link>
-    </div>
   );
 }
