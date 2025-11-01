@@ -1,15 +1,30 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import {
-  SignedIn,
-  SignedOut,
-  SignOutButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Home, Info, MessageSquare } from "lucide-react";
+import { FloatingNav } from "@/components/ui/floating-navbar";
 
 const loginPath = "/auth/login";
 const registerPath = "/auth/register";
+const navItems = [
+  {
+    name: "Home",
+    link: "/",
+    icon: <Home className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "About",
+    link: "/about",
+    icon: <Info className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Contact",
+    link: "/contact",
+    icon: <MessageSquare className="h-4 w-4 text-neutral-500" />,
+  },
+];
 
 const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const hasClerk =
@@ -18,71 +33,86 @@ const hasClerk =
   !publishableKey.includes("dummy");
 
 export function SiteHeader() {
+  const logo = (
+    <Link href="/" aria-label="Maryland Food Bank home">
+      <Image
+        src="/logo.svg"
+        alt="Maryland Food Bank"
+        width={148}
+        height={54}
+        priority
+        className="h-10 w-auto"
+      />
+    </Link>
+  );
+
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-end gap-3 px-6 py-3">
-        {hasClerk ? <AuthenticatedLinks /> : <FallbackLinks />}
-      </div>
-    </header>
+    <FloatingNav
+      navItems={navItems}
+      logo={logo}
+      actions={
+        hasClerk ? (
+          <NavAuthActions />
+        ) : (
+          <FallbackActions />
+        )
+      }
+    />
   );
 }
 
-function AuthenticatedLinks() {
+function NavAuthActions() {
   return (
     <>
       <SignedOut>
-        <nav className="flex items-center gap-3">
-          <Link
-            href={loginPath}
-            className="rounded-full border border-black/15 px-5 py-2 text-sm font-medium text-black transition-colors hover:bg-black hover:text-white"
-          >
-            Login
-          </Link>
+        <div className="flex items-center gap-3">
           <Link
             href={registerPath}
-            className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-85"
+            className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
           >
-            Register
+            Create account
+            <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
           </Link>
-        </nav>
-      </SignedOut>
-
-      <SignedIn>
-        <div className="flex items-center gap-3">
-          <SignOutButton>
-            <button className="rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-black hover:text-white">
-              Sign out
-            </button>
-          </SignOutButton>
-          <UserButton
-            appearance={{
-              elements: {
-                avatarBox: "h-9 w-9",
-              },
-            }}
-            afterSignOutUrl="/"
-          />
+          <Link
+            href={loginPath}
+            className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+          >
+            Login
+            <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+          </Link>
         </div>
+      </SignedOut>
+      <SignedIn>
+        <UserButton
+          appearance={{
+            elements: {
+              avatarBox: "h-9 w-9",
+            },
+          }}
+          afterSignOutUrl="/"
+        />
       </SignedIn>
     </>
   );
 }
 
-function FallbackLinks() {
+function FallbackActions() {
   return (
-    <nav className="flex items-center gap-3">
-      <Link
-        href={loginPath}
-        className="rounded-full border border-black/15 px-5 py-2 text-sm font-medium text-black transition-colors hover:bg-black hover:text-white"
-      >
-        Login
-      </Link>
+    <div className="flex items-center gap-3">
       <Link
         href={registerPath}
-        className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-85"
+        className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
       >
-        Register
+        Create account
+        <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
       </Link>
-    </nav>
+      <Link
+        href={loginPath}
+        className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+      >
+        Login
+        <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+      </Link>
+    </div>
   );
 }
