@@ -41,18 +41,38 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="w-full border-t bg-white/50 backdrop-blur mt-auto">
-        <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">
-              Maryland Food Bank – Purchase Forecasting
-            </p>
-            <p className="text-xs text-gray-500">
-              Last update: {formattedDate} • For internal use
-            </p>
-          </div>
-          <div className="flex gap-4 text-sm text-gray-600">
-            <a href="/guide" className="hover:text-gray-900">How to use this page</a>
-            <a href="/contact" className="hover:text-gray-900">Contact procurement</a>
+        <div className="mx-auto max-w-6xl px-4 py-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">Maryland Food Bank</h3>
+              <p className="text-gray-600 text-sm mt-1">
+                Fighting hunger across Maryland
+              </p>
+            </div>
+            </div>
+
+          <div className="border-t border-gray-200 pt-6 mt-6">
+            <p className="text-xs font-semibold text-gray-700 mb-3">Office Locations:</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-600">
+              <div>
+                <p className="font-medium text-gray-700">Baltimore Office</p>
+                <p>2200 Halethorpe Farms Rd</p>
+                <p>Baltimore, MD 21227</p>
+                <p>(410) 737-8282</p>
+              </div>
+              <div>
+                <p className="font-medium text-gray-700">Eastern Shore</p>
+                <p>28500 Owens Branch Rd</p>
+                <p>Salisbury, MD 21801</p>
+                <p>(410) 742-0050</p>
+              </div>
+              <div>
+                <p className="font-medium text-gray-700">Western Branch</p>
+                <p>220 McRand Court</p>
+                <p>Hagerstown, MD 21740</p>
+                <p>(410) 737-8282</p>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

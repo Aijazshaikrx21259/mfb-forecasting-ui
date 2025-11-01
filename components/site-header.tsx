@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Home, Info, MessageSquare } from "lucide-react";
+import { Home, LayoutDashboard } from "lucide-react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 
 const loginPath = "/auth/login";
@@ -15,14 +15,9 @@ const navItems = [
     icon: <Home className="h-4 w-4 text-neutral-500" />,
   },
   {
-    name: "About",
-    link: "/about",
-    icon: <Info className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    name: "Contact",
-    link: "/contact",
-    icon: <MessageSquare className="h-4 w-4 text-neutral-500" />,
+    name: "Dashboard",
+    link: "/dashboard",
+    icon: <LayoutDashboard className="h-4 w-4 text-neutral-500" />,
   },
 ];
 
