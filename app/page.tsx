@@ -74,6 +74,12 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <div className="border-t border-gray-200 mt-8 pt-8">
+            <div className="text-center text-sm text-gray-500">
+              © 2025 Maryland Food Bank is a 501(c)(3) • All rights reserved.
+            </div>
+          </div>
         </div>
       </footer>
     </div>
