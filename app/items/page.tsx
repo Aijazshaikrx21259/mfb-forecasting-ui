@@ -109,7 +109,6 @@ export default async function ItemsPage() {
 
   const hasRows = rows.length > 0;
   const hasSuggestions = planItems.length > 0;
-  const hasBacktestData = backtestItems.length > 0;
 
   let errorBanner: string | null = null;
   if (planError) {
@@ -210,16 +209,12 @@ export default async function ItemsPage() {
                     <th className="px-4 py-2 font-semibold text-neutral-700">
                       Method
                     </th>
-                    {hasBacktestData && (
-                      <>
-                        <th className="px-4 py-2 font-semibold text-neutral-700">
-                          Backtest MAPE
-                        </th>
-                        <th className="px-4 py-2 font-semibold text-neutral-700">
-                          Beats benchmark?
-                        </th>
-                      </>
-                    )}
+                    <th className="px-4 py-2 font-semibold text-neutral-700">
+                      Backtest MAPE
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-neutral-700">
+                      Beats benchmark?
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-100">
@@ -245,20 +240,16 @@ export default async function ItemsPage() {
                       <td className="px-4 py-2 text-neutral-600">
                         {planRow?.method ?? "—"}
                       </td>
-                      {hasBacktestData && (
-                        <>
-                          <td className="px-4 py-2 text-neutral-600">
-                            {formatPercent(backtestRow?.mape)}
-                          </td>
-                          <td className="px-4 py-2 text-neutral-600">
-                            {backtestRow
-                              ? backtestRow.beats_benchmark
-                                ? "Yes"
-                                : "No"
-                              : "—"}
-                          </td>
-                        </>
-                      )}
+                      <td className="px-4 py-2 text-neutral-600">
+                        {formatPercent(backtestRow?.mape)}
+                      </td>
+                      <td className="px-4 py-2 text-neutral-600">
+                        {backtestRow
+                          ? backtestRow.beats_benchmark
+                            ? "Yes"
+                            : "No"
+                          : "—"}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
