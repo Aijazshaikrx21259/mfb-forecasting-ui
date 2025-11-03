@@ -24,9 +24,9 @@ export default function Home() {
         veilOpacity="bg-white/10"
       >
         <SignedIn>
-          <Link href="/dashboard">
+          <Link href="/items">
             <button className="px-8 py-4 rounded-full border-4 bg-background/80 border-card text-base text-foreground hover:bg-background/90 transition-colors font-medium">
-              Go to Dashboard
+              View Items
             </button>
           </Link>
         </SignedIn>
