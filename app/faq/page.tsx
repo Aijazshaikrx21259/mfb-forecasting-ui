@@ -26,7 +26,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "What data does the system analyze?",
-        answer: "The system analyzes:\n• Historical distribution data from your ERP system\n• Harmonized data stored in Azure SQL Server database\n• Item-level purchase and distribution patterns\n• Monthly demand trends across all food items\n\nAll data is processed to provide accurate, item-specific forecasts (e.g., canned goods, produce, dairy products)."
+        answer: "The system analyzes:\n• Historical distribution data from your ERP system\n• Harmonized data stored in Azure SQL Server database (production)\n• Item-level purchase and distribution patterns\n• Monthly demand trends across all food items\n\nAll data is processed to provide accurate, item-specific forecasts (e.g., canned goods, produce, dairy products).\n\nNote: This MVP version uses PostgreSQL database with a few months of sample data since we don't have direct access to Maryland Food Bank's Azure SQL Server resources yet."
       },
       {
         question: "Who should use this system?",
@@ -38,7 +38,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "How often is the data updated?",
-        answer: "The forecast is updated regularly (typically monthly) based on the latest distribution data from your Azure SQL Server database. The 'Forecast run' badge shows when the current forecast was generated. You'll always see the most recent predictions based on your harmonized ERP data."
+        answer: "The forecast is updated regularly (typically monthly) based on the latest distribution data from your Azure SQL Server database. The 'Forecast run' badge shows when the current forecast was generated. You'll always see the most recent predictions based on your harmonized ERP data.\n\nNote: This MVP version uses PostgreSQL with a few months of sample data for demonstration purposes, as we don't currently have direct access to Maryland Food Bank's production Azure SQL Server."
       },
       {
         question: "Do I need to sign in to use the system?",
@@ -64,7 +64,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "Why don't I see all my items?",
-        answer: "Items appear only if:\n• They have at least 3 months of historical distribution data\n• They've been distributed recently (within the last 18 months)\n• The forecasting system was able to generate a reliable prediction\n\nNew items or items with very limited history won't appear until more data is available."
+        answer: "Items appear only if:\n• They have at least 3 months of historical distribution data\n• They've been distributed recently (within the last 18 months)\n• The forecasting system was able to generate a reliable prediction\n\nNew items or items with very limited history won't appear until more data is available.\n\nNote: This MVP version contains only a few months of sample data from Maryland Food Bank, so you'll see a limited number of items. The production system with full Azure SQL Server access will include complete historical data for all items."
       }
     ]
   },
