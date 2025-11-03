@@ -47,10 +47,8 @@ export function HeroSection({
   fontWeight = 500,
 }: HeroSectionProps) {
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 })
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const update = () =>
       setDimensions({
         width: window.innerWidth,
@@ -70,22 +68,18 @@ export function HeroSection({
   return (
     <section className={`relative w-full min-h-screen overflow-hidden bg-background flex items-center justify-center ${className}`}>
       <div className="fixed inset-0 w-screen h-screen">
-        {mounted && (
-          <>
-            <MeshGradient
-              width={dimensions.width}
-              height={dimensions.height}
-              colors={colors}
-              distortion={distortion}
-              swirl={swirl}
-              grainMixer={0}
-              grainOverlay={0}
-              speed={speed}
-              offsetX={offsetX}
-            />
-            <div className={`absolute inset-0 pointer-events-none ${veilOpacity}`} />
-          </>
-        )}
+        <MeshGradient
+          width={dimensions.width}
+          height={dimensions.height}
+          colors={colors}
+          distortion={distortion}
+          swirl={swirl}
+          grainMixer={0}
+          grainOverlay={0}
+          speed={speed}
+          offsetX={offsetX}
+        />
+        <div className={`absolute inset-0 pointer-events-none ${veilOpacity}`} />
       </div>
 
       <div className={`relative z-10 ${maxWidth} mx-auto px-6 w-full`}>

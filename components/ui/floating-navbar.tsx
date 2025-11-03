@@ -22,6 +22,7 @@ interface FloatingNavProps {
   className?: string;
   logo?: ReactNode;
   actions?: ReactNode;
+  hideOnScroll?: boolean;
 }
 
 export function FloatingNav({
@@ -29,11 +30,17 @@ export function FloatingNav({
   className,
   logo,
   actions,
+  hideOnScroll = true,
 }: FloatingNavProps) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (!hideOnScroll) {
+      setVisible(true);
+      return;
+    }
+
     if (typeof current !== "number") {
       return;
     }
@@ -42,13 +49,11 @@ export function FloatingNav({
     const direction =
       typeof previous === "number" ? current - previous : undefined;
 
-    // Always show navbar at top of page
     if (scrollYProgress.get() < 0.05) {
       setVisible(true);
       return;
     }
 
-    // Hide on scroll down, show on scroll up
     if (direction !== undefined) {
       setVisible(direction < 0);
     }

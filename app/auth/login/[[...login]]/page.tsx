@@ -1,6 +1,18 @@
 import { SignIn } from "@clerk/nextjs";
 
-export default function LoginPage() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+interface LoginPageProps {
+  searchParams?: SearchParams;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const params = (await searchParams) ?? {};
+  const redirectParam = params.redirect_url;
+  const redirectUrl =
+    typeof redirectParam === "string" && redirectParam.length > 0
+      ? redirectParam
+      : "/items";
   return (
     <div className="min-h-screen w-full relative flex items-center justify-center px-4 py-10">
       <div
@@ -30,7 +42,8 @@ export default function LoginPage() {
           routing="path"
           path="/auth/login"
           signUpUrl="/auth/register"
-          redirectUrl="/dashboard"
+          redirectUrl={redirectUrl}
+          afterSignInUrl={redirectUrl}
         />
       </div>
     </div>

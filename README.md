@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## MFB Forecasting UI
 
-## Getting Started
+Next.js dashboard that consumes the forecasting API (`mfb-forecasting-api`) to display planning suggestions, item drill-downs, and model health.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 18+ and npm (or pnpm/yarn)
+- Forecasting API running locally on port `8000`
+- API key: defaults to `change-me` in both services
+
+## Setup
+
+1. Copy the sample environment file:
+   ```bash
+   cp .env.example .env.local
+   ```
+2. Adjust any values as needed. By default the UI calls `http://127.0.0.1:8000/api` and sends `X-API-Key: change-me`, which matches the backend defaults.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+## Development
+
+Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000). The `/items` page pulls the next-month plan and backtest summaries. If the API cannot be reached, the UI now shows a configuration hint so you can confirm the backend is running and the API key/base URL are correct.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set `API_BASE_URL` / `API_KEY` (or their `NEXT_PUBLIC_*` variants) in your hosting environment.
