@@ -24,11 +24,11 @@ export default function PurchasePlanPage() {
   const [sortField, setSortField] = useState<SortField>("priority");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 50; // Show 50 items per page (backend returns ALL items, no limit)
+  const [pageSize, setPageSize] = useState(10); // Default: 10 items per page
 
   // Fetch ALL data for next month on mount (horizon=1)
   // The backend returns ALL items for the forecast run (no SQL LIMIT)
-  // We handle pagination client-side to show 50 items per page
+  // We handle pagination client-side with user-selectable page size
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -133,12 +133,16 @@ export default function PurchasePlanPage() {
 
   // Paginated items
   const paginatedItems = useMemo(() => {
+    if (pageSize === 0) {
+      // Show all items (Max option)
+      return sortedItems;
+    }
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     return sortedItems.slice(startIndex, endIndex);
-  }, [sortedItems, currentPage]);
+  }, [sortedItems, currentPage, pageSize]);
 
-  const totalPages = Math.ceil(sortedItems.length / pageSize);
+  const totalPages = pageSize === 0 ? 1 : Math.ceil(sortedItems.length / pageSize);
 
   // Handle sort column click
   const handleSort = useCallback((field: SortField) => {
@@ -271,7 +275,26 @@ export default function PurchasePlanPage() {
             />
           </div>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <label htmlFor="pageSize" className="text-sm text-neutral-700 whitespace-nowrap">
+              Show:
+            </label>
+            <select
+              id="pageSize"
+              value={pageSize}
+              onChange={(e) => {
+                setPageSize(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+              className="rounded-md border border-neutral-200 px-3 py-2 text-sm focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-neutral-950"
+              aria-label="Items per page"
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+              <option value={0}>Max</option>
+            </select>
+            
             <Button
               variant="outline"
               size="sm"
@@ -406,7 +429,7 @@ export default function PurchasePlanPage() {
       </div>
 
       {/* Pagination */}
-      {totalPages > 1 && (
+      {pageSize > 0 && totalPages > 1 && (
         <div className="mt-6 flex items-center justify-between">
           <p className="text-sm text-neutral-600">
             Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedItems.length)} of {sortedItems.length.toLocaleString()} items
@@ -432,6 +455,14 @@ export default function PurchasePlanPage() {
               Next
             </Button>
           </div>
+        </div>
+      )}
+      
+      {pageSize === 0 && (
+        <div className="mt-6">
+          <p className="text-sm text-neutral-600 text-center">
+            Showing all {sortedItems.length.toLocaleString()} items
+          </p>
         </div>
       )}
     </div>
