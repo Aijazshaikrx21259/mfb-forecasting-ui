@@ -40,6 +40,21 @@ export interface PlanResponse {
   items: PlanItem[];
 }
 
+// Enhanced plan item for UI with computed/enriched fields
+export interface EnhancedPlanItem extends PlanItem {
+  item_name?: string;
+  category?: string;
+  vendor?: string;
+  suggested_qty: number; // p50
+  pi80_low: number | null; // p10
+  pi80_high: number | null; // p90
+  lead_time_days?: number;
+  unit_cost?: number;
+  priority: number; // computed 0-1 score
+  flags: string[]; // ["risk", "anomaly", "stockout_suspect"]
+  notes?: string;
+}
+
 export interface RunMetadataResponse {
   run_id: string;
   horizons: number[];

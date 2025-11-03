@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Home, PackageSearch, LayoutDashboard } from "lucide-react";
+import { Home, PackageSearch, LayoutDashboard, ShoppingCart } from "lucide-react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 
 const loginPath = "/auth/login";
@@ -18,6 +18,11 @@ const navItems = [
     name: "Items",
     link: "/items",
     icon: <PackageSearch className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Purchase Plan",
+    link: "/purchase-plan",
+    icon: <ShoppingCart className="h-4 w-4 text-neutral-500" />,
   },
   {
     name: "Dashboard",
