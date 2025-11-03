@@ -82,15 +82,15 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "What is the '80% Interval' column?",
-        answer: "The 80% Interval shows a range (low to high) where we're 80% confident the actual demand will fall. For example, if it shows '1,000 - 1,500', we're very confident you'll need between 1,000 and 1,500 units. A wider range means more uncertainty."
+        answer: "The 80% Interval shows a prediction range (p10 to p90) where we're 80% confident the actual demand will fall. For example, if it shows '1,000 - 1,500', we're 80% confident you'll need between 1,000 and 1,500 units. A wider range means more uncertainty.\n\nTechnical note: This uses conformal prediction intervals, which provide reliable coverage even for intermittent or sparse demand patterns."
       },
       {
         question: "What does Priority mean (High, Medium, Low)?",
-        answer: "Priority helps you focus on the most important items first:\n\n• High (Red): Large quantities needed or high uncertainty - order these first\n• Medium (Orange): Moderate importance - order after high priority items\n• Low (Green): Smaller quantities or very predictable - can order last\n\nPriority is calculated based on quantity needed and forecast confidence."
+        answer: "Priority helps you focus on the most important items first:\n\n• High (Red, ≥0.7): Large quantities needed or high uncertainty - order these first\n• Medium (Orange, 0.4-0.7): Moderate importance - order after high priority items\n• Low (Green, <0.4): Smaller quantities or very predictable - can order last\n\nPriority is calculated as: 60% quantity score (normalized by 1,000 units) + 40% uncertainty score (based on the width of the 80% interval). Higher quantities and wider prediction intervals result in higher priority."
       },
       {
         question: "What do the flags mean?",
-        answer: "Flags alert you to items that need special attention:\n\n• High Risk: The forecast has high uncertainty - consider ordering extra buffer stock\n• High Volume: You'll need a large quantity - plan storage space and budget accordingly"
+        answer: "Flags alert you to items that need special attention:\n\n• High Risk: The forecast has high uncertainty (interval width > 50% of suggested quantity) - consider ordering extra buffer stock\n• High Volume: You'll need a large quantity (>5,000 units) - plan storage space and budget accordingly"
       },
       {
         question: "How do I search for specific items?",
@@ -123,8 +123,8 @@ const faqSections: FAQSection[] = [
         answer: "These are recommendations to help you plan, not strict requirements. You should:\n• Use your experience and knowledge of upcoming events\n• Adjust for special circumstances (holidays, new programs, etc.)\n• Consider storage capacity and budget constraints\n• Review the 80% Interval to understand the range of possibilities"
       },
       {
-        question: "How should I use confidence intervals?",
-        answer: "The 80% Interval helps you plan for uncertainty:\n• Narrow range (e.g., 950-1,050): High confidence - order close to suggested qty\n• Wide range (e.g., 500-2,000): High uncertainty - consider ordering extra buffer stock or splitting orders\n• Use the lower bound for minimum orders\n• Use the upper bound to plan maximum storage needs"
+        question: "How should I use prediction intervals?",
+        answer: "The 80% Interval (p10-p90) helps you plan for uncertainty:\n• Narrow range (e.g., 950-1,050): High confidence - order close to suggested qty (p50)\n• Wide range (e.g., 500-2,000): High uncertainty - consider ordering extra buffer stock or splitting orders\n• Use the lower bound (p10) for minimum orders\n• Use the upper bound (p90) to plan maximum storage needs\n\nNote: The intervals use conformal prediction, which means they're calibrated to provide reliable coverage even for items with intermittent or sparse demand."
       },
       {
         question: "What should I do with this information?",
