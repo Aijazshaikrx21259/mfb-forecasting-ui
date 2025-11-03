@@ -212,6 +212,36 @@ function ActualDot({
   );
 }
 
+function CustomLegend({ payload }: { payload?: any[] }) {
+  if (!payload || payload.length === 0) {
+    return null;
+  }
+
+  const legendColors: Record<string, string> = {
+    "95% interval": "#a5b4fc",
+    "80% interval": "#6366f1",
+    "Forecast": "#2563eb",
+    "Actuals": "#111827",
+  };
+
+  return (
+    <div className="flex flex-wrap items-center gap-4 pb-4">
+      {payload.map((entry, index) => {
+        const color = legendColors[entry.value] || entry.color;
+        return (
+          <div key={`legend-${index}`} className="flex items-center gap-2">
+            <div
+              className="h-3 w-3 rounded-full"
+              style={{ backgroundColor: color }}
+            />
+            <span className="text-sm text-neutral-700">{entry.value}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function ItemForecastChart({
   actuals,
   forecast,
@@ -264,7 +294,7 @@ export function ItemForecastChart({
             verticalAlign="top"
             align="left"
             height={48}
-            iconType="circle"
+            content={<CustomLegend />}
           />
           {originLabel ? (
             <ReferenceLine

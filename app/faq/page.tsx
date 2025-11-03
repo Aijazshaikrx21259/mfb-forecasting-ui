@@ -55,12 +55,24 @@ const faqSections: FAQSection[] = [
         answer: "The Items page shows a searchable list of all food items with:\n• Item ID and name\n• Latest forecast period\n• Suggested quantity for next month\n• Forecast accuracy metrics\n• Historical distribution patterns\n\nClick any item to see detailed forecasts and charts."
       },
       {
+        question: "What do the columns in the Items table mean?",
+        answer: "The Items page table shows these columns:\n\n• Item ID: Unique identifier for each food item (e.g., P-352101). Click to see detailed forecast charts.\n\n• Suggested qty: The median forecast (p50) - our best estimate of how much you'll need next month.\n\n• 80% interval: Prediction range (p10 to p90) where we're 80% confident the actual demand will fall. Wider ranges mean more uncertainty.\n\n• Period: The month this forecast is for (e.g., 'Jan 2025').\n\n• Method: The forecasting algorithm used (ETS, CrostonSBA, or TSB). The system automatically picks the best method for each item's demand pattern.\n\n• Backtest MAPE: Mean Absolute Percentage Error from historical testing - shows how accurate this method has been for this item. Lower is better (e.g., 15% means the forecast was typically within 15% of actual demand).\n\n• Beats benchmark?: Shows 'Yes' if this method performs better than a simple baseline forecast, 'No' if not. 'Yes' means you can trust this forecast more."
+      },
+      {
         question: "What does the forecast chart show?",
         answer: "The forecast chart displays:\n• Historical demand (past distributions)\n• Future predictions (colored bands showing confidence ranges)\n• Flagged data points (unusual patterns or data quality issues)\n• Multiple forecast horizons (1-4 months ahead)\n\nThe shaded bands show uncertainty - wider bands mean less certainty."
       },
       {
         question: "What do the forecasting methods mean (ETS, CrostonSBA, TSB)?",
         answer: "These are different mathematical approaches we use to predict demand:\n\n• ETS (Exponential Smoothing): Best for items with steady, predictable demand patterns\n• CrostonSBA: Best for items ordered occasionally or intermittently\n• TSB (Teunter-Syntetos-Babai): Best for items being phased out or with declining demand\n\nThe system automatically picks the best method for each item based on its demand pattern."
+      },
+      {
+        question: "What is MAPE and how do I interpret it?",
+        answer: "MAPE stands for Mean Absolute Percentage Error - it measures forecast accuracy:\n\n• 0-10%: Excellent accuracy - very reliable forecast\n• 10-20%: Good accuracy - trustworthy for planning\n• 20-50%: Fair accuracy - use with caution, consider wider safety margins\n• >50%: Poor accuracy - item may have erratic demand or limited history\n\nExample: MAPE of 15% means that historically, the forecast was typically within 15% of the actual demand. If the forecast says 1,000 units, actual demand was usually between 850-1,150 units.\n\nNote: MAPE is calculated from backtest data, testing how well the method would have predicted past months."
+      },
+      {
+        question: "What does 'Beats benchmark' mean?",
+        answer: "'Beats benchmark' compares our advanced forecasting method against a simple baseline (naive forecast):\n\n• Yes: Our method performs better than just using last month's demand as the forecast. This means the sophisticated algorithm is adding value.\n\n• No: The simple baseline performs as well or better. This might happen for very stable items where demand doesn't change much, or items with very erratic patterns.\n\n• —: Benchmark comparison not available yet (no backtest data).\n\nA 'Yes' gives you more confidence that the forecast is using meaningful patterns in the data, not just guessing."
       },
       {
         question: "Why don't I see all my items?",
