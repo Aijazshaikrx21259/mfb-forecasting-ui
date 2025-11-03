@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 // Define which routes are public (accessible without auth)
 const isPublicRoute = createRouteMatcher([
   "/",
+  "/faq",
   "/auth(.*)",
   "/api/public(.*)",
 ]);
