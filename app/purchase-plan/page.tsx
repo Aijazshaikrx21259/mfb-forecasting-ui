@@ -472,20 +472,20 @@ export default function PurchasePlanPage() {
 function PriorityBadge({ priority }: { priority: number }) {
   if (priority >= 0.7) {
     return (
-      <Badge className="bg-red-100 text-red-800 hover:bg-red-100 border-red-200">
+      <Badge className="bg-red-500 text-white hover:bg-red-600 border-red-600 font-semibold">
         High
       </Badge>
     );
   }
   if (priority >= 0.4) {
     return (
-      <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 border-amber-200">
+      <Badge className="bg-amber-500 text-white hover:bg-amber-600 border-amber-600 font-semibold">
         Medium
       </Badge>
     );
   }
   return (
-    <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-200">
+    <Badge className="bg-green-500 text-white hover:bg-green-600 border-green-600 font-semibold">
       Low
     </Badge>
   );
@@ -500,10 +500,10 @@ function FlagBadge({ flag }: { flag: string }) {
   };
   
   const colors: Record<string, string> = {
-    risk: "bg-red-50 text-red-700 border-red-200",
-    high_volume: "bg-blue-50 text-blue-700 border-blue-200",
-    anomaly: "bg-orange-50 text-orange-700 border-orange-200",
-    stockout_suspect: "bg-purple-50 text-purple-700 border-purple-200",
+    risk: "bg-red-100 text-red-800 border-red-300 font-medium",
+    high_volume: "bg-blue-100 text-blue-800 border-blue-300 font-medium",
+    anomaly: "bg-orange-100 text-orange-800 border-orange-300 font-medium",
+    stockout_suspect: "bg-purple-100 text-purple-800 border-purple-300 font-medium",
   };
   
   return (
