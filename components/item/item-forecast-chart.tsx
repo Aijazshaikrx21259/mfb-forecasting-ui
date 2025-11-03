@@ -105,7 +105,7 @@ function createChartData(
 
 function formatNumber(value: number | null | undefined): string {
   if (value == null) {
-    return "—";
+    return "-";
   }
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,

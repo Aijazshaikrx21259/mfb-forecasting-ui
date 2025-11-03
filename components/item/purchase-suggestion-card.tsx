@@ -41,7 +41,7 @@ function formatQuantity(value: number | null): string {
 
 function formatInterval(
   interval: [number | null, number | null],
-  fallbackLabel = "—"
+  fallbackLabel = "-"
 ): string {
   const [lower, upper] = interval;
   if (lower == null || upper == null) {
@@ -207,11 +207,11 @@ export function PurchaseSuggestionCard({
                   </h4>
                   <ul className="mt-1 space-y-1">
                     <li>
-                      80%: {pi80} cases — shows likely swing under typical
+                      80%: {pi80} cases - shows likely swing under typical
                       volatility.
                     </li>
                     <li>
-                      95%: {pi95} cases — useful for stress testing and safety
+                      95%: {pi95} cases - useful for stress testing and safety
                       stock decisions.
                     </li>
                   </ul>

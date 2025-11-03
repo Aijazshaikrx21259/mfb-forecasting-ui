@@ -22,18 +22,18 @@ const percentFormatter = new Intl.NumberFormat("en-US", {
 
 function formatMonth(period: string | null | undefined): string {
   if (!period) {
-    return "—";
+    return "-";
   }
   const parsed = new Date(period);
   if (Number.isNaN(parsed.getTime())) {
-    return "—";
+    return "-";
   }
   return format(parsed, "MMM yyyy");
 }
 
 function formatQuantity(value: number | null | undefined): string {
   if (value == null) {
-    return "—";
+    return "-";
   }
   return integerFormatter.format(value);
 }
@@ -43,14 +43,14 @@ function formatInterval(
   upper: number | null | undefined
 ): string {
   if (lower == null || upper == null) {
-    return "—";
+    return "-";
   }
-  return `${integerFormatter.format(lower)} – ${integerFormatter.format(upper)}`;
+  return `${integerFormatter.format(lower)} - ${integerFormatter.format(upper)}`;
 }
 
 function formatPercent(value: number | null | undefined): string {
   if (value == null) {
-    return "—";
+    return "-";
   }
   return `${percentFormatter.format(value)}%`;
 }
@@ -238,7 +238,7 @@ export default async function ItemsPage() {
                         {formatMonth(planRow?.period_start_date)}
                       </td>
                       <td className="px-4 py-2 text-neutral-600">
-                        {planRow?.method ?? "—"}
+                        {planRow?.method ?? "-"}
                       </td>
                       <td className="px-4 py-2 text-neutral-600">
                         {formatPercent(backtestRow?.mape)}
@@ -248,7 +248,7 @@ export default async function ItemsPage() {
                           ? backtestRow.beats_benchmark
                             ? "Yes"
                             : "No"
-                          : "—"}
+                          : "-"}
                       </td>
                     </tr>
                   ))}

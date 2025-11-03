@@ -72,7 +72,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "What does 'Beats benchmark' mean?",
-        answer: "'Beats benchmark' compares our advanced forecasting method against a simple baseline (naive forecast):\n\n• Yes: Our method performs better than just using last month's demand as the forecast. This means the sophisticated algorithm is adding value.\n\n• No: The simple baseline performs as well or better. This might happen for very stable items where demand doesn't change much, or items with very erratic patterns.\n\n• —: Benchmark comparison not available yet (no backtest data).\n\nA 'Yes' gives you more confidence that the forecast is using meaningful patterns in the data, not just guessing."
+        answer: "'Beats benchmark' compares our advanced forecasting method against a simple baseline (naive forecast):\n\n• Yes: Our method performs better than just using last month's demand as the forecast. This means the sophisticated algorithm is adding value.\n\n• No: The simple baseline performs as well or better. This might happen for very stable items where demand doesn't change much, or items with very erratic patterns.\n\n• -: Benchmark comparison not available yet (no backtest data).\n\nA 'Yes' gives you more confidence that the forecast is using meaningful patterns in the data, not just guessing."
       },
       {
         question: "Why don't I see all my items?",

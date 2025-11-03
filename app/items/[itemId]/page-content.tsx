@@ -218,12 +218,12 @@ export function PageContent({ itemId, initialInsight }: PageContentProps) {
                       <td className="px-4 py-2">
                         {champion.mape != null
                           ? `${champion.mape.toFixed(2)}%`
-                          : "—"}
+                          : "-"}
                       </td>
                       <td className="px-4 py-2">
                         {champion.rmse != null
                           ? champion.rmse.toFixed(2)
-                          : "—"}
+                          : "-"}
                       </td>
                       <td className="px-4 py-2">
                         {champion.beats_baseline ? "Yes" : "No"}
