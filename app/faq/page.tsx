@@ -72,7 +72,7 @@ const faqs: FAQItem[] = [
   }
 ];
 
-export function FAQSection() {
+export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -80,8 +80,16 @@ export function FAQSection() {
   };
 
   return (
-    <div className="mt-12 mb-8">
-      <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+    <div className="container mx-auto py-12 px-4 max-w-4xl">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold tracking-tight mb-3">
+          Frequently Asked Questions
+        </h1>
+        <p className="text-lg text-neutral-600">
+          Everything you need to know about the Maryland Food Bank Purchase Forecasting system
+        </p>
+      </div>
+
       <div className="space-y-3">
         {faqs.map((faq, index) => (
           <Card key={index} className="overflow-hidden">

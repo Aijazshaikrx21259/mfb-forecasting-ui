@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert } from "@/components/ui/alert";
-import { FAQSection } from "./faq-section";
 
 type SortField = "priority" | "suggested_qty" | "risk" | "unit_cost" | "name";
 type SortDirection = "asc" | "desc";
@@ -466,9 +465,6 @@ export default function PurchasePlanPage() {
           </p>
         </div>
       )}
-
-      {/* FAQ Section */}
-      <FAQSection />
     </div>
   );
 }
