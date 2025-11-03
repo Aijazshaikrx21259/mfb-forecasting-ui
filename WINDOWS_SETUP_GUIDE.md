@@ -21,11 +21,13 @@ Complete step-by-step guide to set up both the **Frontend (Next.js)** and **Back
 Node.js is required to run the Next.js frontend.
 
 1. **Download Node.js:**
+
    - Visit: [https://nodejs.org/](https://nodejs.org/)
    - Download the **LTS (Long Term Support)** version for Windows
    - Current recommended: Node.js 20.x or later
 
 2. **Install Node.js:**
+
    - Run the downloaded `.msi` installer
    - Click "Next" through the installation wizard
    - **IMPORTANT:** Make sure "Add to PATH" is checked
@@ -45,10 +47,12 @@ Node.js is required to run the Next.js frontend.
 Git is required to clone the project repository.
 
 1. **Download Git:**
+
    - Visit: [https://git-scm.com/download/win](https://git-scm.com/download/win)
    - Download the latest version for Windows
 
 2. **Install Git:**
+
    - Run the downloaded installer
    - Use default settings (just click "Next")
    - **IMPORTANT:** Select "Git from the command line and also from 3rd-party software"
@@ -67,11 +71,13 @@ Git is required to clone the project repository.
 Docker is required to run the Python backend in a container.
 
 1. **Download Docker Desktop:**
+
    - Visit: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
    - Click "Download for Windows"
    - Save the `Docker Desktop Installer.exe` file
 
 2. **Install Docker Desktop:**
+
    - Run the installer as Administrator (right-click > Run as administrator)
    - During installation:
      - **Check** "Use WSL 2 instead of Hyper-V" (recommended)
@@ -80,6 +86,7 @@ Docker is required to run the Python backend in a container.
    - Restart your computer when prompted
 
 3. **Start Docker Desktop:**
+
    - After restart, open **Docker Desktop** from Start menu
    - Accept the Docker Subscription Service Agreement
    - Wait for Docker to start (you'll see "Docker Desktop is running" in system tray)
@@ -103,14 +110,17 @@ Docker is required to run the Python backend in a container.
 ### Step 1: Clone the Frontend Repository
 
 1. **Open Command Prompt:**
+
    - Press `Win + R`, type `cmd`, press Enter
 
 2. **Navigate to Your Workspace:**
+
    ```bash
    cd C:\Users\YourUsername\Documents
    mkdir Projects
    cd Projects
    ```
+
    - Replace `YourUsername` with your Windows username
 
 3. **Clone the Repository:**
@@ -119,12 +129,16 @@ Docker is required to run the Python backend in a container.
    cd mfb-forecasting-ui
    ```
 
+   - Repository URL: [https://github.com/Aijazshaikrx21259/mfb-forecasting-ui.git](https://github.com/Aijazshaikrx21259/mfb-forecasting-ui.git)
+
 ### Step 2: Install Frontend Dependencies
 
 1. **Install npm Packages:**
+
    ```bash
    npm install
    ```
+
    - This will take 2-5 minutes
    - You'll see progress as packages are downloaded
 
@@ -135,15 +149,20 @@ Docker is required to run the Python backend in a container.
 ### Step 3: Set Up Environment Variables
 
 1. **Create Environment File:**
+
    - In the `mfb-forecasting-ui` folder, create a new file named `.env.local`
    - You can use Notepad:
+
    ```bash
    notepad .env.local
    ```
+
    - Click "Yes" when asked to create a new file
 
 2. **Add Environment Variables:**
+
    - Copy and paste this template into `.env.local`:
+
    ```env
    # Backend API Configuration
    NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
@@ -164,16 +183,20 @@ Docker is required to run the Python backend in a container.
 ### Step 4: Start the Frontend
 
 1. **Run the Development Server:**
+
    ```bash
    npm run dev
    ```
 
 2. **Verify Frontend is Running:**
+
    - You should see:
+
    ```
    - ready started server on 0.0.0.0:3000
    - Local: http://localhost:3000
    ```
+
    - Open your browser and go to: [http://localhost:3000](http://localhost:3000)
    - You should see the Maryland Food Bank Forecasting homepage
 
@@ -188,42 +211,50 @@ Docker is required to run the Python backend in a container.
 ### Step 1: Clone the Backend Repository
 
 1. **Open a NEW Command Prompt Window:**
+
    - Press `Win + R`, type `cmd`, press Enter
 
 2. **Navigate to Your Workspace:**
+
    ```bash
    cd C:\Users\YourUsername\Documents\Projects
    ```
 
 3. **Clone the Backend Repository:**
    ```bash
-   git clone https://github.com/YOUR-USERNAME/mfb-forecasting-api.git
+   git clone https://github.com/Aijazshaikrx21259/mfb-forecasting-api.git
    cd mfb-forecasting-api
    ```
-   - Replace `YOUR-USERNAME` with the actual GitHub username/organization
+
+   - Repository URL: [https://github.com/Aijazshaikrx21259/mfb-forecasting-api.git](https://github.com/Aijazshaikrx21259/mfb-forecasting-api.git)
 
 ### Step 2: Set Up Backend Environment Variables
 
 1. **Copy Example Environment File:**
+
    ```bash
    copy env.example .env
    ```
 
 2. **Edit Environment File:**
+
    - Open `.env` file in Notepad:
+
    ```bash
    notepad .env
    ```
 
 3. **Configure Environment Variables:**
+
    - Replace placeholders with your actual values:
+
    ```env
    # Database Configuration
    DATABASE_URL=your-postgres-connection-string-here
-   
+
    # API Configuration
    API_KEY=your-api-key-here
-   
+
    # Optional: Perplexity AI for research features
    PERPLEXITY_API_KEY=your-perplexity-key-here
    ```
@@ -235,13 +266,16 @@ Docker is required to run the Python backend in a container.
 ### Step 3: Build the Docker Image
 
 1. **Ensure Docker Desktop is Running:**
+
    - Check the system tray for the Docker icon
    - It should say "Docker Desktop is running"
 
 2. **Build the Backend Image:**
+
    ```bash
    docker-compose build
    ```
+
    - This will take 5-10 minutes the first time
    - Docker is downloading and installing all Python dependencies
 
@@ -252,15 +286,19 @@ Docker is required to run the Python backend in a container.
 ### Step 4: Start the Backend Container
 
 1. **Start the Backend:**
+
    ```bash
    docker-compose up -d
    ```
+
    - The `-d` flag runs it in the background (detached mode)
 
 2. **Check Container Status:**
+
    ```bash
    docker-compose ps
    ```
+
    - You should see a container running on port 8000
 
 3. **View Logs (Optional):**
@@ -273,6 +311,7 @@ Docker is required to run the Python backend in a container.
 ### Step 5: Verify Backend is Running
 
 1. **Test the Health Endpoint:**
+
    - Open your browser
    - Go to: [http://localhost:8000/health](http://localhost:8000/health)
    - You should see: `{"status": "healthy"}`
@@ -288,10 +327,12 @@ Docker is required to run the Python backend in a container.
 ### Full System Check
 
 1. **Frontend Running:**
+
    - Open: [http://localhost:3000](http://localhost:3000)
    - You should see the homepage
 
 2. **Backend Running:**
+
    - Open: [http://localhost:8000/health](http://localhost:8000/health)
    - You should see `{"status": "healthy"}`
 
@@ -303,6 +344,7 @@ Docker is required to run the Python backend in a container.
 ### Common Commands
 
 **Frontend (in `mfb-forecasting-ui` folder):**
+
 ```bash
 # Start development server
 npm run dev
@@ -315,6 +357,7 @@ npm install
 ```
 
 **Backend (in `mfb-forecasting-api` folder):**
+
 ```bash
 # Start backend
 docker-compose up -d
@@ -339,10 +382,12 @@ docker ps
 ### Frontend Issues
 
 **Problem: `npm install` fails**
+
 - Solution: Delete `node_modules` folder and `package-lock.json`, then run `npm install` again
 - Make sure you have a stable internet connection
 
 **Problem: Port 3000 already in use**
+
 - Solution: Kill the process using port 3000:
   ```bash
   netstat -ano | findstr :3000
@@ -354,30 +399,35 @@ docker ps
   ```
 
 **Problem: Environment variables not loading**
+
 - Make sure file is named `.env.local` (not `.env.local.txt`)
 - Restart the dev server after changing environment variables
 
 ### Backend Issues
 
 **Problem: Docker Desktop won't start**
+
 - Restart your computer
 - Make sure virtualization is enabled in BIOS
 - Try running Docker Desktop as Administrator
 
 **Problem: `docker-compose` command not found**
+
 - Use `docker compose` (space instead of hyphen) with newer Docker versions
 - Or reinstall Docker Desktop
 
 **Problem: Port 8000 already in use**
+
 - Stop any other services using port 8000
 - Or change the port in `docker-compose.yaml`:
   ```yaml
   ports:
-    - "8001:8000"  # Use 8001 on host, 8000 in container
+    - "8001:8000" # Use 8001 on host, 8000 in container
   ```
 - Don't forget to update `.env.local` in frontend to use the new port
 
 **Problem: Container won't start**
+
 - Check logs:
   ```bash
   docker-compose logs
@@ -390,6 +440,7 @@ docker ps
   ```
 
 **Problem: Database connection error**
+
 - Verify your `DATABASE_URL` in `.env` is correct
 - Make sure your database is accessible from your Windows machine
 - Check firewall settings
@@ -409,11 +460,13 @@ docker ps
 Once everything is running:
 
 1. **Explore the Frontend:**
+
    - Homepage: [http://localhost:3000](http://localhost:3000)
    - Items Page: [http://localhost:3000/items](http://localhost:3000/items)
    - Purchase Plan: [http://localhost:3000/purchase-plan](http://localhost:3000/purchase-plan)
 
 2. **Explore the Backend API:**
+
    - API Documentation: [http://localhost:8000/docs](http://localhost:8000/docs)
    - Health Check: [http://localhost:8000/health](http://localhost:8000/health)
 
@@ -426,18 +479,18 @@ Once everything is running:
 
 ## Quick Reference Card
 
-| Task | Command |
-|------|---------|
-| Start Frontend | `cd mfb-forecasting-ui && npm run dev` |
-| Stop Frontend | Press `Ctrl+C` in terminal |
-| Start Backend | `cd mfb-forecasting-api && docker-compose up -d` |
-| Stop Backend | `cd mfb-forecasting-api && docker-compose down` |
-| View Backend Logs | `docker-compose logs -f` |
-| Rebuild Backend | `docker-compose up -d --build` |
-| Check Docker Status | `docker ps` |
-| Frontend URL | http://localhost:3000 |
-| Backend URL | http://localhost:8000 |
-| API Docs | http://localhost:8000/docs |
+| Task                | Command                                          |
+| ------------------- | ------------------------------------------------ |
+| Start Frontend      | `cd mfb-forecasting-ui && npm run dev`           |
+| Stop Frontend       | Press `Ctrl+C` in terminal                       |
+| Start Backend       | `cd mfb-forecasting-api && docker-compose up -d` |
+| Stop Backend        | `cd mfb-forecasting-api && docker-compose down`  |
+| View Backend Logs   | `docker-compose logs -f`                         |
+| Rebuild Backend     | `docker-compose up -d --build`                   |
+| Check Docker Status | `docker ps`                                      |
+| Frontend URL        | http://localhost:3000                            |
+| Backend URL         | http://localhost:8000                            |
+| API Docs            | http://localhost:8000/docs                       |
 
 ---
 
@@ -451,4 +504,3 @@ Once everything is running:
 ---
 
 **Setup Complete!** You're now ready to develop and test the Maryland Food Bank Forecasting System on Windows.
-
