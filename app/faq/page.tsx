@@ -22,15 +22,23 @@ const faqSections: FAQSection[] = [
     faqs: [
       {
         question: "What is the Maryland Food Bank Purchase Forecasting system?",
-        answer: "This system helps you plan food purchases by analyzing historical distribution data and predicting future demand. It uses advanced forecasting methods to suggest how much of each item you should order, helping you avoid shortages and reduce waste."
+        answer: "This is a purchase forecasting application built for regional food banks to analyze historical and harmonized ERP data from Azure SQL Server database. The system projects future food purchases at an item level - for example, answering questions like 'How much tuna fish should I buy next month?' It uses advanced forecasting methods to analyze past distribution patterns and predict future demand, helping you avoid shortages and reduce waste."
+      },
+      {
+        question: "What data does the system analyze?",
+        answer: "The system analyzes:\n• Historical distribution data from your ERP system\n• Harmonized data stored in Azure SQL Server database\n• Item-level purchase and distribution patterns\n• Monthly demand trends across all food items\n\nAll data is processed to provide accurate, item-specific forecasts (e.g., canned goods, produce, dairy products)."
       },
       {
         question: "Who should use this system?",
-        answer: "This system is designed for:\n• Purchasing managers who order food items\n• Warehouse managers who plan storage and inventory\n• Operations staff who coordinate distributions\n• Budget planners who need demand forecasts\n\nAnyone involved in procurement planning can benefit from these insights."
+        answer: "This system is designed for:\n• Purchasing managers who order food items\n• Warehouse managers who plan storage and inventory\n• Operations staff who coordinate distributions\n• Budget planners who need demand forecasts\n• Regional food bank administrators\n\nAnyone involved in procurement planning can benefit from these item-level insights."
+      },
+      {
+        question: "How does it help with purchasing decisions?",
+        answer: "The system provides item-level forecasts to answer specific questions like:\n• 'How much tuna fish should I buy next month?'\n• 'What quantity of rice do I need for the next quarter?'\n• 'Which items need priority ordering?'\n\nBy analyzing historical ERP data, it predicts future demand for each individual item, helping you make informed purchasing decisions and optimize your budget."
       },
       {
         question: "How often is the data updated?",
-        answer: "The forecast is updated regularly (typically monthly) based on the latest distribution data. The 'Forecast run' badge shows when the current forecast was generated. You'll always see the most recent predictions available."
+        answer: "The forecast is updated regularly (typically monthly) based on the latest distribution data from your Azure SQL Server database. The 'Forecast run' badge shows when the current forecast was generated. You'll always see the most recent predictions based on your harmonized ERP data."
       },
       {
         question: "Do I need to sign in to use the system?",
