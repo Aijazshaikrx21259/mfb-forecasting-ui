@@ -48,13 +48,6 @@ interface ItemForecastChartProps {
   forecastOriginDate: string | null;
 }
 
-const legendPayload = [
-  { value: "Actuals", type: "line", color: "#111827" },
-  { value: "Forecast", type: "line", color: "#2563eb" },
-  { value: "80% interval", type: "square", color: "rgba(37, 99, 235, 0.28)" },
-  { value: "95% interval", type: "square", color: "rgba(165, 180, 252, 0.38)" },
-];
-
 function createChartData(
   actuals: ActualHistoryPoint[],
   forecast: ForecastBandPoint[]
@@ -272,7 +265,6 @@ export function ItemForecastChart({
             align="left"
             height={48}
             iconType="circle"
-            payload={legendPayload}
           />
           {originLabel ? (
             <ReferenceLine

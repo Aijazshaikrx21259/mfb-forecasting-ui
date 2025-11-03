@@ -228,7 +228,7 @@ export async function loadItemInsight(itemId: string): Promise<ItemInsightData> 
     getBacktestItemDetail(itemId, [1]).catch(() => null),
     getItemFlags(itemId).catch(() => []),
     getLatestRunMetadata().catch(() => null),
-  ] as const);
+  ]);
 
   const championMap = Object.fromEntries(
     (forecast?.champions ?? []).map((champion) => [champion.horizon, champion])
@@ -271,7 +271,7 @@ export async function loadItemInsight(itemId: string): Promise<ItemInsightData> 
       limitedHistory: actualHistory.length > 0 && actualHistory.length < 6,
       hasActuals: actualHistory.length > 0,
       forecastUnavailable,
-      forecastErrorMessage: forecastError?.message ?? null,
+      forecastErrorMessage: (forecastError as Error | null)?.message ?? null,
     },
   };
 }

@@ -246,7 +246,7 @@ export default function PurchasePlanPage() {
         <div className="flex gap-2 flex-wrap">
           {runMetadata && (
             <>
-              <Badge variant="secondary">
+              <Badge variant="subtle">
                 Forecast run {formatDate(new Date(runMetadata.forecast_generated_at || runMetadata.created_at), "MMM d, yyyy h:mm a")}
               </Badge>
               <Badge variant="outline">

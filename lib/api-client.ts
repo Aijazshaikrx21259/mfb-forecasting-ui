@@ -29,9 +29,9 @@ export async function apiFetch<T>(
   const url = path.startsWith("http") ? path : `${baseUrl}${path}`;
 
   const apiKey = getApiKey();
-  const finalHeaders: HeadersInit = {
+  const finalHeaders: Record<string, string> = {
     "Content-Type": "application/json",
-    ...headers,
+    ...(headers as Record<string, string> || {}),
   };
   if (apiKey) {
     finalHeaders["X-API-Key"] = apiKey;
@@ -39,7 +39,7 @@ export async function apiFetch<T>(
 
   const response = await fetch(url, {
     ...options,
-    headers: finalHeaders,
+    headers: finalHeaders as HeadersInit,
     cache: options?.cache ?? "no-store",
     next: options?.next,
   });
