@@ -56,6 +56,7 @@ export function SiteHeader() {
       navItems={navItems}
       logo={logo}
       actions={<NavAuthActions />}
+      hideOnScroll={false}
     />
   );
 }
