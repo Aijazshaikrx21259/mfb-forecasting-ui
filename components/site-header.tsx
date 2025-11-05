@@ -77,9 +77,15 @@ function NavAuthActions() {
           appearance={{
             elements: {
               avatarBox: "h-9 w-9",
+              userButtonPopoverRootBox: "relative z-[100000]",
+              userButtonPopoverCard: "relative z-[100000]",
+              modalBackdrop: "z-[100000]",
+              modalContent: "z-[100001]",
             },
           }}
           afterSignOutUrl="/"
+          userProfileUrl="/manage"
+          userProfileMode="navigation"
         />
       </SignedIn>
     </>
