@@ -54,3 +54,7 @@ next-env.d.ts
 
 # documentation
 WINDOWS_SETUP_GUIDE.md
+
+# local tooling
+scripts/
+reports/
