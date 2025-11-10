@@ -11,6 +11,7 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert } from "@/components/ui/alert";
 import { RenderWakeAlert } from "@/components/render-wake-alert";
+import { DelayedRenderWakeAlert } from "@/components/delayed-render-wake-alert";
 
 type SortField = "priority" | "suggested_qty" | "risk" | "unit_cost" | "name";
 type SortDirection = "asc" | "desc";
@@ -217,7 +218,7 @@ export default function PurchasePlanPage() {
     return (
       <div className="container mx-auto py-8 px-4">
         <div className="mb-4">
-          <RenderWakeAlert title="Preparing purchase plan data" />
+          <DelayedRenderWakeAlert title="Preparing purchase plan data" />
         </div>
         <div className="mb-6">
           <Skeleton className="h-10 w-96 mb-2" />
