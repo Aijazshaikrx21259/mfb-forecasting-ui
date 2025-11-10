@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert } from "@/components/ui/alert";
+import { RenderWakeAlert } from "@/components/render-wake-alert";
 
 type SortField = "priority" | "suggested_qty" | "risk" | "unit_cost" | "name";
 type SortDirection = "asc" | "desc";
@@ -215,6 +216,9 @@ export default function PurchasePlanPage() {
   if (loading) {
     return (
       <div className="container mx-auto py-8 px-4">
+        <div className="mb-4">
+          <RenderWakeAlert title="Preparing purchase plan data" />
+        </div>
         <div className="mb-6">
           <Skeleton className="h-10 w-96 mb-2" />
           <Skeleton className="h-6 w-64" />
@@ -228,6 +232,9 @@ export default function PurchasePlanPage() {
   if (error) {
     return (
       <div className="container mx-auto py-8 px-4">
+        <div className="mb-4">
+          <RenderWakeAlert title="The forecasting API is waking up" />
+        </div>
         <Alert>
           <p className="font-semibold">Unable to load purchase plan</p>
           <p className="mt-1 text-sm">{error}</p>
@@ -512,4 +519,3 @@ function FlagBadge({ flag }: { flag: string }) {
     </Badge>
   );
 }
-
