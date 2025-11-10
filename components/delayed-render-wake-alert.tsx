@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { RenderWakeAlert } from "@/components/render-wake-alert";
 
 type DelayedRenderWakeAlertProps = {
   delayMs?: number;
+  children?: ReactNode;
 } & React.ComponentProps<typeof RenderWakeAlert>;
 
 export function DelayedRenderWakeAlert({
   delayMs = 10_000,
+  children,
   ...alertProps
 }: DelayedRenderWakeAlertProps) {
   const [show, setShow] = useState(false);
@@ -20,6 +22,15 @@ export function DelayedRenderWakeAlert({
 
   if (!show) {
     return null;
+  }
+
+  if (children) {
+    return (
+      <div className="space-y-3">
+        <RenderWakeAlert {...alertProps} />
+        {children}
+      </div>
+    );
   }
 
   return <RenderWakeAlert {...alertProps} />;
