@@ -12,12 +12,33 @@ All notable changes to the MFB Forecasting UI will be documented in this file.
   - Alert preferences page for customization
   - Integration with site header
   - Real-time polling for new alerts
-- Scroll area UI component for better UX
-- Navigation item for alerts
+- API clients
+  - Adjustments API client with full CRUD
+  - Enhanced alerts API client
+- Utility functions
+  - Date formatting and manipulation
+  - Number and metric formatting
+  - Input validation utilities
+  - Error handling hooks
+- UI components
+  - Loading states and skeletons
+  - Empty state component
+- Configuration
+  - Application constants
+  - TypeScript types and interfaces
+  - Prettier and EditorConfig
+  - VS Code workspace settings
+- Documentation
+  - Features documentation
+  - Development guide
+  - Contributing guidelines
+  - Testing guide
+  - Deployment guide
 
 ### Changed
 - Site header now includes alert bell for authenticated users
 - Updated navigation to include alerts page
+- Enhanced package.json with format and type-check scripts
 
 ### Fixed
 - Various UI improvements and bug fixes
