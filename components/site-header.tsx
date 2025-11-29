@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Home, PackageSearch, HelpCircle, ShoppingCart } from "lucide-react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
+import { AlertBell } from "@/components/alerts/alert-bell";
 
 const loginPath = "/auth/login";
 const registerPath = "/auth/register";
@@ -74,6 +75,7 @@ function NavAuthActions() {
         </Link>
       </SignedOut>
       <SignedIn>
+        <AlertBell />
         <UserButton
           appearance={{
             elements: {
