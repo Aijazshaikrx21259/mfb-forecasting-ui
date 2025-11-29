@@ -9,9 +9,12 @@ Next.js dashboard providing demand forecasting visualization, purchase planning,
 ✅ **Purchase Planning** - Searchable, sortable purchase recommendations  
 ✅ **Data Export** - CSV export functionality  
 ✅ **Authentication** - Clerk-based user management  
+✅ **API Clients** - Full CRUD for alerts and adjustments  
+✅ **Utility Functions** - Date, number formatting, and validation  
+✅ **Loading States** - Skeletons and empty states for better UX  
 🔄 **Backtest Dashboard** - Model performance tracking (planned)  
 🔄 **Data Quality** - Anomaly detection and monitoring (planned)  
-🔄 **Adjustments** - Manual forecast overrides (planned)
+🔄 **Adjustments UI** - Manual forecast overrides interface (planned)
 
 ## Prerequisites
 
