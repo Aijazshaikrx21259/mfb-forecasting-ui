@@ -1,6 +1,17 @@
 ## MFB Forecasting UI
 
-Next.js dashboard that consumes the forecasting API (`mfb-forecasting-api`) to display planning suggestions, item drill-downs, and model health.
+Next.js dashboard providing demand forecasting visualization, purchase planning, and alert management for Maryland Food Bank operations.
+
+## Features
+
+✅ **Alert System** - Real-time notifications for forecast events  
+✅ **Item Forecasting** - View demand forecasts with confidence bands  
+✅ **Purchase Planning** - Searchable, sortable purchase recommendations  
+✅ **Data Export** - CSV export functionality  
+✅ **Authentication** - Clerk-based user management  
+🔄 **Backtest Dashboard** - Model performance tracking (planned)  
+🔄 **Data Quality** - Anomaly detection and monitoring (planned)  
+🔄 **Adjustments** - Manual forecast overrides (planned)
 
 ## Prerequisites
 
