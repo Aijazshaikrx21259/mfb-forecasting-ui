@@ -61,13 +61,24 @@ export default function BacktestDashboardPage() {
       );
 
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        if (response.status === 503) {
+          setError("Database not configured. Please set up the database connection.");
+        } else if (response.status === 404) {
+          setError("No backtest data found. Run a backtest first.");
+        } else {
+          throw new Error(`API error: ${response.status}`);
+        }
+        return;
       }
 
       const result = await response.json();
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load performance data");
+      if (err instanceof TypeError && err.message.includes("fetch")) {
+        setError("Cannot connect to API. Make sure the API server is running at " + (process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000/api"));
+      } else {
+        setError(err instanceof Error ? err.message : "Failed to load performance data");
+      }
     } finally {
       setLoading(false);
     }
