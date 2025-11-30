@@ -146,6 +146,36 @@ export default function PurchasePlanPage() {
 
   const totalPages = pageSize === 0 ? 1 : Math.ceil(sortedItems.length / pageSize);
 
+  // Export to CSV
+  const exportToCSV = useCallback(async () => {
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000/api";
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY || "change-me";
+
+      const response = await fetch(`${baseUrl}/forecast/plan/csv?horizon=1`, {
+        headers: {
+          "X-API-Key": apiKey,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to export CSV");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `purchase-plan-${new Date().toISOString().split("T")[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      alert("Failed to export CSV: " + (err instanceof Error ? err.message : "Unknown error"));
+    }
+  }, []);
+
   // Handle sort column click
   const handleSort = useCallback((field: SortField) => {
     if (sortField === field) {
@@ -247,22 +277,28 @@ export default function PurchasePlanPage() {
   return (
     <div className="container mx-auto py-8 px-4 max-w-7xl">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">
-          Purchase Plan - Next Month
-        </h1>
-        <div className="flex gap-2 flex-wrap">
-          {runMetadata && (
-            <>
-              <Badge variant="subtle">
-                Forecast run {formatDate(new Date(runMetadata.forecast_generated_at || runMetadata.created_at), "MMM d, yyyy h:mm a")}
-              </Badge>
-              <Badge variant="outline">
-                {runMetadata.items_forecasted || 0} items
-              </Badge>
-            </>
-          )}
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">
+            Purchase Plan - Next Month
+          </h1>
+          <div className="flex gap-2 flex-wrap">
+            {runMetadata && (
+              <>
+                <Badge variant="subtle">
+                  Forecast run {formatDate(new Date(runMetadata.forecast_generated_at || runMetadata.created_at), "MMM d, yyyy h:mm a")}
+                </Badge>
+                <Badge variant="outline">
+                  {runMetadata.items_forecasted || 0} items
+                </Badge>
+              </>
+            )}
+          </div>
         </div>
+        <Button onClick={exportToCSV} className="flex items-center gap-2">
+          <Download className="h-4 w-4" />
+          Export CSV
+        </Button>
       </div>
 
       {/* Control bar */}
