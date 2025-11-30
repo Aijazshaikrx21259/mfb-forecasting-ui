@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Home, PackageSearch, HelpCircle, ShoppingCart, Bell } from "lucide-react";
+import { Home, PackageSearch, HelpCircle, ShoppingCart, Bell, BarChart3, Activity, Package, AlertTriangle } from "lucide-react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { AlertBell } from "@/components/alerts/alert-bell";
 
@@ -26,14 +26,29 @@ const navItems = [
     icon: <ShoppingCart className="h-4 w-4 text-neutral-500" />,
   },
   {
+    name: "Categories",
+    link: "/categories",
+    icon: <Package className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Performance",
+    link: "/backtest",
+    icon: <BarChart3 className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Model Info",
+    link: "/model-transparency",
+    icon: <Activity className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Data Quality",
+    link: "/data-quality",
+    icon: <AlertTriangle className="h-4 w-4 text-neutral-500" />,
+  },
+  {
     name: "Alerts",
     link: "/alerts",
     icon: <Bell className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    name: "FAQ",
-    link: "/faq",
-    icon: <HelpCircle className="h-4 w-4 text-neutral-500" />,
   },
 ];
 
