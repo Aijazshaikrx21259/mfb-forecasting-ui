@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Edit, Save, X, CheckCircle, Clock } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { CreateAdjustmentDialog } from "@/components/adjustments/create-adjustment-dialog";
 
 interface Adjustment {
   adjustment_id: string;
@@ -92,10 +93,7 @@ export default function AdjustmentsPage() {
             Manually adjust forecasted quantities and add expert notes
           </p>
         </div>
-        <Button>
-          <Edit className="h-4 w-4 mr-2" />
-          New Adjustment
-        </Button>
+        <CreateAdjustmentDialog onSuccess={fetchAdjustments} />
       </div>
 
       {loading ? (
@@ -115,7 +113,7 @@ export default function AdjustmentsPage() {
                   Create your first forecast adjustment to override system predictions
                 </p>
               </div>
-              <Button>Create Adjustment</Button>
+              <CreateAdjustmentDialog onSuccess={fetchAdjustments} />
             </div>
           </CardContent>
         </Card>
