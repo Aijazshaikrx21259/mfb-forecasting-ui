@@ -7,12 +7,12 @@ import { PageContent } from "./page-content";
 
 interface ItemPageProps {
   params: Promise<{
-    itemId: string;
+    id: string;
   }>;
 }
 
 export default async function ItemPage({ params }: ItemPageProps) {
-  const { itemId: rawItemId } = await params;
+  const { id: rawItemId } = await params;
   const itemId = decodeURIComponent(rawItemId);
 
   let insightError: Error | null = null;
