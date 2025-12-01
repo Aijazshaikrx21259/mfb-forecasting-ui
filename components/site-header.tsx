@@ -3,9 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Home, PackageSearch, HelpCircle, ShoppingCart, Bell, BarChart3, Activity, Package, AlertTriangle } from "lucide-react";
+import { Home, PackageSearch, HelpCircle, ShoppingCart, Bell, BarChart3, Activity, Package, AlertTriangle, Edit, TrendingUp, Server } from "lucide-react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
-import { AlertBell } from "@/components/alerts/alert-bell";
 
 const loginPath = "/auth/login";
 const registerPath = "/auth/register";
@@ -49,6 +48,11 @@ const navItems = [
     name: "Alerts",
     link: "/alerts",
     icon: <Bell className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    name: "Adjustments",
+    link: "/adjustments",
+    icon: <Edit className="h-4 w-4 text-neutral-500" />,
   },
 ];
 
@@ -95,7 +99,6 @@ function NavAuthActions() {
         </Link>
       </SignedOut>
       <SignedIn>
-        <AlertBell />
         <UserButton
           appearance={{
             elements: {
