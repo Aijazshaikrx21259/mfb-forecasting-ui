@@ -79,7 +79,7 @@ export async function getItemForecast(
   }
   const suffix = params.toString() ? `?${params.toString()}` : "";
   return apiFetch<ItemForecastResponse>(
-    `/forecasts/items/${encodeURIComponent(itemId)}${suffix}`
+    `/forecast/forecasts/items/${encodeURIComponent(itemId)}${suffix}`
   );
 }
 
