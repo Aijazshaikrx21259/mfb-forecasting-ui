@@ -54,6 +54,11 @@ const navItems = [
     link: "/adjustments",
     icon: <Edit className="h-4 w-4 text-neutral-500" />,
   },
+  {
+    name: "Metrics",
+    link: "/metrics",
+    icon: <Server className="h-4 w-4 text-neutral-500" />,
+  },
 ];
 
 const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
