@@ -37,7 +37,7 @@ export default function AlertsPage() {
       </div>
 
       <Card>
-        <AlertList userId={user.id} />
+        <AlertList userId="all-users" />
       </Card>
     </div>
   );
