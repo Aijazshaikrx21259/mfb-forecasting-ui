@@ -35,7 +35,7 @@ export default function AdjustmentsPage() {
   const fetchAdjustments = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/adjustments", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/adjustments`, {
         headers: {
           "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
         },
@@ -43,7 +43,8 @@ export default function AdjustmentsPage() {
       
       if (response.ok) {
         const data = await response.json();
-        setAdjustments(data.adjustments || []);
+        console.log("Adjustments data:", data);
+        setAdjustments(data.adjustments || data || []);
       }
     } catch (error) {
       console.error("Failed to fetch adjustments:", error);
@@ -122,15 +123,12 @@ export default function AdjustmentsPage() {
           {adjustments.map((adj) => (
             <Card key={adj.adjustment_id}>
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="text-lg">{adj.item_id}</CardTitle>
-                    <CardDescription>
-                      Adjusted by {adj.adjusted_by} on{" "}
-                      {new Date(adj.adjusted_at).toLocaleDateString()}
-                    </CardDescription>
-                  </div>
-                  {getStatusBadge(adj.status)}
+                <div>
+                  <CardTitle className="text-lg">{adj.item_id}</CardTitle>
+                  <CardDescription>
+                    Adjusted by {adj.adjusted_by} on{" "}
+                    {new Date(adj.adjusted_at).toLocaleDateString()}
+                  </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -165,24 +163,7 @@ export default function AdjustmentsPage() {
                   </div>
                 )}
 
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <Edit className="h-3 w-3 mr-1" />
-                    Edit
-                  </Button>
-                  {adj.status === "PENDING" && (
-                    <>
-                      <Button variant="outline" size="sm" className="text-green-600">
-                        <CheckCircle className="h-3 w-3 mr-1" />
-                        Approve
-                      </Button>
-                      <Button variant="outline" size="sm" className="text-red-600">
-                        <X className="h-3 w-3 mr-1" />
-                        Reject
-                      </Button>
-                    </>
-                  )}
-                </div>
+                {/* Approval workflow buttons removed - US #18 focuses on creating adjustments and notes */}
               </CardContent>
             </Card>
           ))}
