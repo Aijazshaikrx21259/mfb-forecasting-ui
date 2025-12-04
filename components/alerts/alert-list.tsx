@@ -167,9 +167,9 @@ export function AlertList({ userId, onClose }: AlertListProps) {
                     </div>
                     {alert.action_url && alert.action_label && (
                       <Button
-                        variant="link"
+                        variant="ghost"
                         size="sm"
-                        className="h-auto p-0 mt-2 text-xs"
+                        className="h-auto p-0 mt-2 text-xs text-blue-600 hover:text-blue-800"
                         onClick={() => {
                           handleMarkAsRead(alert.alert_id);
                           if (onClose) onClose();
