@@ -5,6 +5,12 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LoadingSpinner, EmptyState } from "@/components/ui/loading-states";
 import { Package, TrendingUp, BarChart3 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface CategoryForecast {
   category: string;
@@ -14,8 +20,13 @@ interface CategoryForecast {
   horizon_months: number;
 }
 
+interface CategoryItems {
+  [category: string]: string[];
+}
+
 export default function CategoriesPage() {
   const [data, setData] = useState<CategoryForecast[]>([]);
+  const [categoryItems, setCategoryItems] = useState<CategoryItems>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [horizon, setHorizon] = useState(1);
@@ -44,6 +55,18 @@ export default function CategoriesPage() {
 
       const result = await response.json();
       setData(result);
+
+      // Fetch items for each category
+      const itemsResponse = await fetch(`${baseUrl}/categories/items`, {
+        headers: {
+          "X-API-Key": apiKey,
+        },
+      });
+
+      if (itemsResponse.ok) {
+        const itemsData = await itemsResponse.json();
+        setCategoryItems(itemsData);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load category data");
     } finally {
@@ -174,9 +197,28 @@ export default function CategoriesPage() {
             return (
               <div key={category.category}>
                 <div className="flex items-center justify-between mb-1">
-                  <Badge className={getCategoryColor(category.category)}>
-                    {category.category}
-                  </Badge>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Badge className={getCategoryColor(category.category)}>
+                          {category.category}
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs">
+                        <p className="font-semibold mb-1">Items in {category.category}:</p>
+                        <ul className="text-xs space-y-1">
+                          {categoryItems[category.category]?.slice(0, 10).map((item) => (
+                            <li key={item}>• {item}</li>
+                          )) || <li>Loading...</li>}
+                          {categoryItems[category.category]?.length > 10 && (
+                            <li className="text-muted-foreground">
+                              ... and {categoryItems[category.category].length - 10} more
+                            </li>
+                          )}
+                        </ul>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                   <span className="text-sm text-neutral-600">
                     {formatNumber(category.total_forecast)} units ({percentage}%)
                   </span>
@@ -223,9 +265,28 @@ export default function CategoriesPage() {
                 return (
                   <tr key={category.category} className="border-b hover:bg-neutral-50">
                     <td className="py-3 px-4">
-                      <Badge className={getCategoryColor(category.category)}>
-                        {category.category}
-                      </Badge>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Badge className={getCategoryColor(category.category)}>
+                              {category.category}
+                            </Badge>
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            <p className="font-semibold mb-1">Items in {category.category}:</p>
+                            <ul className="text-xs space-y-1">
+                              {categoryItems[category.category]?.slice(0, 10).map((item) => (
+                                <li key={item}>• {item}</li>
+                              )) || <li>Loading...</li>}
+                              {categoryItems[category.category]?.length > 10 && (
+                                <li className="text-muted-foreground">
+                                  ... and {categoryItems[category.category].length - 10} more
+                                </li>
+                              )}
+                            </ul>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </td>
                     <td className="py-3 px-4 text-sm text-right font-medium">
                       {formatNumber(category.total_forecast)}

@@ -16,6 +16,12 @@ interface PerformanceTrendPoint {
   pct_items_beating_sn: number | null;
 }
 
+interface ItemChampion {
+  item_id: string;
+  champion_method: string;
+  mape: number;
+}
+
 interface PerformanceSummaryResponse {
   current_run: {
     horizon_months: number;
@@ -31,6 +37,7 @@ interface PerformanceSummaryResponse {
   method_performance: Record<string, { avg_mape: number; avg_rmse: number; count: number }>;
   accuracy_distribution: Record<string, number>;
   total_runs: number;
+  item_champions?: ItemChampion[];
 }
 
 export default function BacktestDashboardPage() {

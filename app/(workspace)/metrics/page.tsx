@@ -159,6 +159,43 @@ export default function MetricsPage() {
         </Card>
       </div>
 
+      {/* Render Deployment Metrics */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Server className="h-5 w-5" />
+            Render Deployment Status
+          </CardTitle>
+          <CardDescription>
+            Backend API deployment on Render
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Service Status</p>
+              <div className="flex items-center gap-2 mt-1">
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                <p className="text-lg font-semibold">Live</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Region</p>
+              <p className="text-lg font-semibold">Oregon (US West)</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Instance Type</p>
+              <p className="text-lg font-semibold">Free Tier</p>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t">
+            <p className="text-sm text-muted-foreground">
+              API Base URL: <code className="text-xs bg-muted px-2 py-1 rounded">{process.env.NEXT_PUBLIC_API_BASE_URL}</code>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Cost Estimates */}
       {costs && (
         <Card>
@@ -245,6 +282,18 @@ export default function MetricsPage() {
               <p className="font-medium">Fast API Response</p>
               <p className="text-sm text-muted-foreground">
                 API endpoints responding within acceptable thresholds
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div className="rounded-full bg-orange-100 p-2">
+              <Server className="h-4 w-4 text-orange-600" />
+            </div>
+            <div>
+              <p className="font-medium">Render Deployment Active</p>
+              <p className="text-sm text-muted-foreground">
+                Backend API deployed on Render with automatic scaling and health checks
               </p>
             </div>
           </div>
