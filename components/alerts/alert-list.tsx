@@ -166,10 +166,8 @@ export function AlertList({ userId, onClose }: AlertListProps) {
                       )}
                     </div>
                     {alert.action_url && alert.action_label && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-auto p-0 mt-2 text-xs text-blue-600 hover:text-blue-800"
+                      <button
+                        className="flex items-center gap-1 mt-2 text-xs text-blue-600 hover:text-blue-800 hover:underline"
                         onClick={() => {
                           handleMarkAsRead(alert.alert_id);
                           if (onClose) onClose();
@@ -177,8 +175,8 @@ export function AlertList({ userId, onClose }: AlertListProps) {
                         }}
                       >
                         {alert.action_label}
-                        <ExternalLink className="h-3 w-3 ml-1" />
-                      </Button>
+                        <ExternalLink className="h-3 w-3" />
+                      </button>
                     )}
                   </div>
                 </div>
