@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback } from "react";
-import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "@/components/ui/use-toast";
 
 /**
  * Hook for handling errors with toast notifications
  */
 export function useToastError() {
-  const { toast } = useToast();
+  // Simple console-based implementation
+  const toast = (props: any) => console.log("Toast:", props);
 
   const showError = useCallback(
     (error: unknown, defaultMessage: string = "An error occurred") => {
