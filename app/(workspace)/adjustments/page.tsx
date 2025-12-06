@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Edit, Save, X, CheckCircle, Clock } from "lucide-react";
+import { Edit, Save, X, CheckCircle, Clock, Trash2 } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { CreateAdjustmentDialog } from "@/components/adjustments/create-adjustment-dialog";
+import { deleteAdjustment } from "@/lib/api/adjustments";
 
 interface Adjustment {
   adjustment_id: string;
@@ -27,6 +28,7 @@ export default function AdjustmentsPage() {
   const [adjustments, setAdjustments] = useState<Adjustment[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAdjustments();
@@ -50,6 +52,30 @@ export default function AdjustmentsPage() {
       console.error("Failed to fetch adjustments:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (adjustmentId: string, status: string) => {
+    // Only allow deleting PENDING or REJECTED adjustments
+    if (status !== "PENDING" && status !== "REJECTED") {
+      alert(`Cannot delete ${status} adjustments. Only PENDING or REJECTED adjustments can be deleted.`);
+      return;
+    }
+
+    if (!confirm("Are you sure you want to delete this adjustment?")) {
+      return;
+    }
+
+    try {
+      setDeletingId(adjustmentId);
+      await deleteAdjustment(adjustmentId);
+      // Refresh the list
+      await fetchAdjustments();
+    } catch (error) {
+      console.error("Failed to delete adjustment:", error);
+      alert("Failed to delete adjustment. Please try again.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -123,12 +149,28 @@ export default function AdjustmentsPage() {
           {adjustments.map((adj) => (
             <Card key={adj.adjustment_id}>
               <CardHeader>
-                <div>
-                  <CardTitle className="text-lg">{adj.item_id}</CardTitle>
-                  <CardDescription>
-                    Adjusted by {adj.adjusted_by} on{" "}
-                    {new Date(adj.adjusted_at).toLocaleDateString()}
-                  </CardDescription>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <CardTitle className="text-lg">{adj.item_id}</CardTitle>
+                    <CardDescription>
+                      Adjusted by {adj.adjusted_by} on{" "}
+                      {new Date(adj.adjusted_at).toLocaleDateString()}
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {getStatusBadge(adj.status)}
+                    {(adj.status === "PENDING" || adj.status === "REJECTED") && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDelete(adj.adjustment_id, adj.status)}
+                        disabled={deletingId === adj.adjustment_id}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
